@@ -6,11 +6,15 @@
 
 <script>
 
+    function getRandomTimeout(millis){
+        return Math.floor((Math.random() * millis) + 500);
+    }
+
     function changeselect(obj){
 
         hideTheMessage();
 
-        var timeout = Math.floor((Math.random() * 2000) + 500);
+        var timeout = getRandomTimeout(2000);
 
         var selectedList = "";
 
@@ -47,7 +51,7 @@
         var optionalRandomTiming = location.hash ? parseInt(location.hash.substr(1)) : 0;
         if(optionalRandomTiming!=0){
             // delay history if hash has number
-            var hashtimeout = Math.floor((Math.random() * optionalRandomTiming) + 500);
+            var hashtimeout = getRandomTimeout(optionalRandomTiming);
             setTimeout(addHistoryText,hashtimeout, displayMessage, addUnder);
         }else {
             // display history immediately
@@ -74,9 +78,15 @@
         if(!elem){
             elem =  document.createElement("p");
             elem.setAttribute("id","message");
+            elem.setAttribute("style","display:none");
             document.getElementById("message-render").appendChild(elem);
         }
         document.getElementById("message").innerText=theMessage;
+        // now it is in the dom
+        // but not visible so delay visibility to add additional synchronisation hassle
+        setTimeout(function(){document.getElementById("message").setAttribute("style","display:block")},getRandomTimeout(1000));
+
+
     }
 
     function addHistoryText(displayMessage, addUnder){
