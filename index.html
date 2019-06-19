@@ -21,7 +21,7 @@
         // if hash starts with _ then later we want to hide the message initially
         if(theHash.startsWith("_")){
             options.hideMessageInitially = true;
-            theHash.replace("_", "");
+            theHash = theHash.replace("_", "");
         }
 
         // try and get a timing from the hash
