@@ -115,7 +115,7 @@
         if(hashOptions.hideMessageInitially) {
             setTimeout(function () {
                 document.getElementById("message").setAttribute("style", "display:block")
-            }, getRandomTimeout(1000));
+            }, getRandomTimeout(hashOptions.randomTiming+1000));
         }
 
 
